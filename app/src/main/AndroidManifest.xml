@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidUI">
         <activity android:name=".Register1"></activity>
-        <activity android:name=".Login1" />
+        <activity android:name=".morphism" />
         <activity
-            android:name=".morphism"
+            android:name=".Login1"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
