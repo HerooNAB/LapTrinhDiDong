@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".Login1"
     tools:ignore="VectorDrawableCompat">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/bgHeader"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:background="@drawable/header_login"
@@ -42,7 +42,7 @@
         android:id="@+id/circle1"
         android:layout_width="134dp"
         android:layout_height="134dp"
-        android:layout_below="@+id/bgHeader"
+        android:layout_below="@+id/toolbar"
         android:layout_alignParentRight="true"
         android:layout_marginTop="-80dp"
         android:layout_marginRight="-100dp"
@@ -81,7 +81,7 @@
         android:id="@+id/sv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/bgHeader">
+        android:layout_below="@+id/toolbar">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -105,17 +105,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Username"
+                        android:text="Phone number"
                         android:textColor="@color/colorPurple"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/edtPhoneNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:inputType="text" />
+                        android:inputType="number" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,6 +128,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/edtPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -164,29 +166,33 @@
                 android:layout_marginRight="-20dp"
                 android:elevation="10dp">
 
-                <ImageButton
-                    android:id="@+id/btRegister"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/bg_ui"
-                    android:src="@drawable/ic_add" />
+
             </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
             <TextView
-                android:id="@+id/tvForgot"
+                android:id="@+id/tvRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cv"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:elevation="5dp"
-                android:text="Forgot your password?"
-                android:textSize="14sp" />
+                android:text="You don't have account? Create one!"
+                android:textSize="14sp"
+                android:onClick="tvRegister"
+                android:clickable="true">
 
+            </TextView>
             <Button
+                android:id="@+id/btnSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvForgot"
+                android:layout_below="@+id/tvRegister"
                 android:layout_alignLeft="@+id/cv"
                 android:layout_alignRight="@+id/cv"
                 android:layout_marginLeft="20dp"
