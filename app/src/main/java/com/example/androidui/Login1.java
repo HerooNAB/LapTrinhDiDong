@@ -44,6 +44,7 @@ public class Login1 extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0 || s.length() >= 11) {
                     edtPhoneNumber.setError("Enter a valid mobile");
+                    
                 }
             }
         });
