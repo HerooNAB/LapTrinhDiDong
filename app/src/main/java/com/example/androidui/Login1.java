@@ -89,7 +89,8 @@ public class Login1 extends AppCompatActivity {
         startActivity(new Intent
                 (Login1.this, Register1.class));
     }
-
+    
+    //Service Login - Call API
     public void Login(String phone, String password){
 
         //Khai báo SharePrefs

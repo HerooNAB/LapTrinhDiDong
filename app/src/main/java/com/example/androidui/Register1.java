@@ -199,6 +199,7 @@ public class Register1 extends AppCompatActivity {
         }
     };
 
+    //Service Signup - Call API
     private void Signup(String phone, String password, String name, String email) {
 
         //Khai báo SharePrefs
