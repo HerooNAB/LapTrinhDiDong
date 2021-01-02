@@ -10,12 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidUI">
-        <activity android:name=".Register1"
+        <activity android:name=".Register1.Register1"
             android:theme="@style/AppTheme.FullScreen"
             android:label=""
             ></activity>
         <activity
-            android:name=".Login1"
+            android:name=".Login1.Login1"
             android:theme="@style/AppTheme.FullScreen"
             >
             <intent-filter>
@@ -24,9 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.example.androiui.MainActivity.MainActivity" />
 
-        <activity android:name=".morphism" />
+        <activity android:name=".Login1.morphism" />
 
     </application>
 
