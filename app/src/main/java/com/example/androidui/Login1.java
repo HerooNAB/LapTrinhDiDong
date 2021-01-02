@@ -89,7 +89,7 @@ public class Login1 extends AppCompatActivity {
         startActivity(new Intent
                 (Login1.this, Register1.class));
     }
-    
+
     //Service Login - Call API
     public void Login(String phone, String password){
 
@@ -119,6 +119,7 @@ public class Login1 extends AppCompatActivity {
 
                         //Thêm phần chuyển trang vào đây!!!!
                         //
+                        System.out.println("Chuyen Trang");
                         //Show Toast
                         Toast.makeText(Login1.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     }
