@@ -203,10 +203,6 @@ public class Register extends AppCompatActivity {
     //Service Signup - Call API
     private void Signup(String phone, String password, String name, String email) {
 
-        //Khai báo SharePrefs
-        SharedPreferences sharedpreferences;
-        sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-
         //API
         String ServerName = "https://whatfoods.herokuapp.com/signup";
 
@@ -218,10 +214,9 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        // Thêm phần chuyển trang ở đây!!!
-                        //
                         //ShowToast
                         Toast.makeText(Register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
+                        System.out.println("Thanh cong");
                     }
                 },
 

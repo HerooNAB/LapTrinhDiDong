@@ -42,6 +42,8 @@ public class Login extends AppCompatActivity {
         edtPhoneNumber = findViewById(R.id.edtPhoneNumber);
         edtPassword = findViewById(R.id.edtPassword);
         btnSubmit = findViewById(R.id.btnSubmit);
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(submitLogin);
 
 
         String inputPhone = edtPhoneNumber.getText().toString().trim();
@@ -83,6 +85,16 @@ public class Login extends AppCompatActivity {
                 (Login.this, Register.class));
     }
 
+    private View.OnClickListener submitLogin= new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String phone = edtPhoneNumber.getText().toString();
+            String password = edtPassword.getText().toString();
+
+            Login(phone, password);
+        }
+    };
+
     public void Login(String phone, String password){
 
         //Khai báo SharePrefs
@@ -120,6 +132,7 @@ public class Login extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        System.out.println("That Bai");
                         //Show Toast
                         Toast.makeText(Login.this, "Login Fail", Toast.LENGTH_SHORT).show();
                     }
