@@ -2,24 +2,33 @@ package com.example.androidui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Patterns;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toolbar;
+import android.widget.Toast;
 
+import com.android.volley.*;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
+
+import android.content.SharedPreferences;
 
 public class Login1 extends AppCompatActivity {
 
     private TextView tvRegister;
     private EditText edtPhoneNumber, edtPassword;
-    private Button btnSubmit;
+    private Button btnSubmit, btnLogin;
 
 
     @Override
@@ -30,7 +39,8 @@ public class Login1 extends AppCompatActivity {
         edtPhoneNumber = findViewById(R.id.edtPhoneNumber);
         edtPassword = findViewById(R.id.edtPassword);
         btnSubmit = findViewById(R.id.btnSubmit);
-
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(submitLogin);
 
         String inputPhone = edtPhoneNumber.getText().toString().trim();
 
@@ -56,8 +66,17 @@ public class Login1 extends AppCompatActivity {
                 }
             }
         });
-
     }
+
+    private View.OnClickListener submitLogin= new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String phone = edtPhoneNumber.getText().toString();
+            String password = edtPassword.getText().toString();
+
+            Login(phone, password);
+        }
+    };
 
     // pattem phone number
     private boolean isValidPhone(String phone) {
@@ -69,5 +88,65 @@ public class Login1 extends AppCompatActivity {
     public void tvRegister(View view) {
         startActivity(new Intent
                 (Login1.this, Register1.class));
+    }
+
+    public void Login(String phone, String password){
+
+        //Khai báo SharePrefs
+        SharedPreferences sharedpreferences;
+        sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        //API
+        String ServerName = "https://whatfoods.herokuapp.com/signin";
+
+        //Call API
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, ServerName,
+                //Login Successful
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        System.out.println(response);
+
+                        //Lưu Token vào SharePrefs
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString("token", response);
+                        editor.commit();
+                        System.out.println("test prefs");
+                        System.out.println(sharedpreferences.getString("token",""));
+
+                        //Thêm phần chuyển trang vào đây!!!!
+                        //
+                        //Show Toast
+                        Toast.makeText(Login1.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    }
+                },
+
+                //Login Fail
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Show Toast
+                        Toast.makeText(Login1.this, "Login Fail", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        )
+
+            //Truyền dữ liệu theo params
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("phone", phone);
+                params.put("password", password);
+
+                return params;
+            }
+        };
+
+        //Thực thi Call API
+        queue.add(postRequest);
     }
 }

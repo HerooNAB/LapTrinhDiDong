@@ -3,13 +3,26 @@ package com.example.androidui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 
@@ -18,7 +31,7 @@ public class Register1 extends AppCompatActivity {
 
     private EditText edtPhoneNumber, edtPassword, edtEmail, edtName;
 
-    private Button btnSubmit;
+    private Button btnSubmit, btnSignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +49,8 @@ public class Register1 extends AppCompatActivity {
         edtName = findViewById(R.id.edtName);
         edtEmail = findViewById(R.id.edtEmail);
         btnSubmit = findViewById(R.id.btnSubmit);
-
-        //convert editText to string
-//        String inputPhone = edtPhoneNumber.getText().toString().trim();
-//        String inputEmail = edtEmail.getText().toString().trim();
-
+        btnSignup = findViewById(R.id.btnSignup);
+        btnSignup.setOnClickListener(submitSignup);
 
         //catch text changed event
         edtName.addTextChangedListener(new TextWatcher() {
@@ -175,6 +185,70 @@ public class Register1 extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    private View.OnClickListener submitSignup= new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String phone = edtPhoneNumber.getText().toString();
+            String password = edtPassword.getText().toString();
+            String name = edtName.getText().toString();
+            String email = edtEmail.getText().toString();
+
+            Signup(phone, password, name, email);
+        }
+    };
+
+    private void Signup(String phone, String password, String name, String email) {
+
+        //Khai báo SharePrefs
+        SharedPreferences sharedpreferences;
+        sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        //API
+        String ServerName = "https://whatfoods.herokuapp.com/signup";
+
+        //Call API
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, ServerName,
+                //Signup Successful
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        // Thêm phần chuyển trang ở đây!!!
+                        //
+                        //ShowToast
+                        Toast.makeText(Register1.this, "Signup Successful", Toast.LENGTH_SHORT).show();
+                    }
+                },
+
+                //Signup Fail
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Show Toast
+                        Toast.makeText(Register1.this, "Signup Fail", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        )
+
+                //Truyền dữ liệu theo params
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("phone", phone);
+                params.put("password", password);
+                params.put("name", name);
+                params.put("email", email);
+                return params;
+            }
+        };
+
+        //Thực thi Call API
+        queue.add(postRequest);
     }
 
 }
