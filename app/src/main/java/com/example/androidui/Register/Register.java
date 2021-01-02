@@ -1,4 +1,4 @@
-package com.example.androidui.Register1;
+package com.example.androidui.Register;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+<<<<<<< Updated upstream:app/src/main/java/com/example/androidui/Register1/Register1.java
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -23,10 +24,13 @@ import com.example.androidui.R;
 
 import java.util.HashMap;
 import java.util.Map;
+=======
+
+>>>>>>> Stashed changes:app/src/main/java/com/example/androidui/Register1.java
 import java.util.regex.Pattern;
 
 
-public class Register1 extends AppCompatActivity {
+public class Register extends AppCompatActivity {
 
 
     private EditText edtPhoneNumber, edtPassword, edtEmail, edtName;
@@ -220,7 +224,7 @@ public class Register1 extends AppCompatActivity {
                         // Thêm phần chuyển trang ở đây!!!
                         //
                         //ShowToast
-                        Toast.makeText(Register1.this, "Signup Successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
                     }
                 },
 
@@ -229,7 +233,7 @@ public class Register1 extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //Show Toast
-                        Toast.makeText(Register1.this, "Signup Fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, "Signup Fail", Toast.LENGTH_SHORT).show();
                     }
                 }
         )
