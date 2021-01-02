@@ -2,24 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.androidui">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidUI">
-        <activity android:name=".Register.Register"
-            android:theme="@style/AppTheme.FullScreen"
+        android:theme="@style/Theme.AndroidUI"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Profile.Profile"></activity>
+        <activity android:name=".EditProfile.EditProfile" />
+        <activity android:name=".CreatePost.CreatePosts" />
+        <activity
+            android:name=".Register.Register"
             android:label=""
-            ></activity>
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".Login.Login"
-            android:theme="@style/AppTheme.FullScreen"
-            >
+            android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +28,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.androiui.MainActivity.MainActivity" />
-
     </application>
 
 </manifest>
