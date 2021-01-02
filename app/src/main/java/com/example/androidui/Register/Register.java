@@ -11,7 +11,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-<<<<<<< Updated upstream:app/src/main/java/com/example/androidui/Register1/Register1.java
+
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,9 +24,6 @@ import com.example.androidui.R;
 
 import java.util.HashMap;
 import java.util.Map;
-=======
-
->>>>>>> Stashed changes:app/src/main/java/com/example/androidui/Register1.java
 import java.util.regex.Pattern;
 
 
