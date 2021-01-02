@@ -11,7 +11,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-<<<<<<< Updated upstream:app/src/main/java/com/example/androidui/Register1/Register1.java
+
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,9 +24,6 @@ import com.example.androidui.R;
 
 import java.util.HashMap;
 import java.util.Map;
-=======
-
->>>>>>> Stashed changes:app/src/main/java/com/example/androidui/Register1.java
 import java.util.regex.Pattern;
 
 
@@ -206,10 +203,6 @@ public class Register extends AppCompatActivity {
     //Service Signup - Call API
     private void Signup(String phone, String password, String name, String email) {
 
-        //Khai báo SharePrefs
-        SharedPreferences sharedpreferences;
-        sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-
         //API
         String ServerName = "https://whatfoods.herokuapp.com/signup";
 
@@ -221,10 +214,9 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        // Thêm phần chuyển trang ở đây!!!
-                        //
                         //ShowToast
                         Toast.makeText(Register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
+                        System.out.println("Thanh cong");
                     }
                 },
 
