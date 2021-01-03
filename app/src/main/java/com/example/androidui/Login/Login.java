@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.androidui.Profile.Profile;
 import com.example.androidui.R;
 import com.example.androidui.Register.Register;
 
@@ -85,6 +86,9 @@ public class Login extends AppCompatActivity {
                 (Login.this, Register.class));
     }
 
+
+
+
     private View.OnClickListener submitLogin= new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -123,6 +127,8 @@ public class Login extends AppCompatActivity {
 
                         //Thêm phần chuyển trang vào đây!!!!
                         //
+                        startActivity(new Intent
+                                (Login.this, Profile.class));
                         //Show Toast
                         Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     }
