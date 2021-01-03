@@ -1,11 +1,8 @@
-package com.example.androiui.MainActivity;
+package com.example.androidui.MainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 import com.example.androidui.R;
 

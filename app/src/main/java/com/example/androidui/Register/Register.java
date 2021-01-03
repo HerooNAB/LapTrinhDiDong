@@ -202,10 +202,8 @@ public class Register extends AppCompatActivity {
 
     //Service Signup - Call API
     private void Signup(String phone, String password, String name, String email) {
-
         //API
         String ServerName = "https://whatfoods.herokuapp.com/signup";
-
         //Call API
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest postRequest = new StringRequest(Request.Method.POST, ServerName,
@@ -219,7 +217,6 @@ public class Register extends AppCompatActivity {
                         System.out.println("Thanh cong");
                     }
                 },
-
                 //Signup Fail
                 new Response.ErrorListener() {
                     @Override
@@ -229,7 +226,6 @@ public class Register extends AppCompatActivity {
                     }
                 }
         )
-
                 //Truyền dữ liệu theo params
         {
             @Override
@@ -243,7 +239,6 @@ public class Register extends AppCompatActivity {
                 return params;
             }
         };
-
         //Thực thi Call API
         queue.add(postRequest);
     }

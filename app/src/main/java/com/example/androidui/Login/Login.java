@@ -18,11 +18,16 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidui.Profile.Profile;
 import com.example.androidui.R;
 import com.example.androidui.Register.Register;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +38,7 @@ public class Login extends AppCompatActivity {
     private TextView tvRegister;
     private EditText edtPhoneNumber, edtPassword;
     private Button btnSubmit, btnLogin;
+    RequestQueue requestQueue;
 
 
     @Override
@@ -99,38 +105,47 @@ public class Login extends AppCompatActivity {
         }
     };
 
+    //Service Login - Call API
     public void Login(String phone, String password){
 
         //Khai báo SharePrefs
         SharedPreferences sharedpreferences;
         sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
 
-        //API
+        //API link
         String ServerName = "https://whatfoods.herokuapp.com/signin";
 
-        //Call API
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, ServerName,
+        //Setting Post Method
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ServerName,
+
                 //Login Successful
-                new com.android.volley.Response.Listener<String>() {
+                new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // response
-                        System.out.println(response);
+                        try {
 
-                        //Lưu Token vào SharePrefs
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
-                        editor.putString("token", response);
-                        editor.commit();
-                        System.out.println("test prefs");
-                        System.out.println(sharedpreferences.getString("token",""));
+                            //Nhận trả về theo kiểu Json
+                            JSONObject obj = new JSONObject(response);
+                            System.out.println(obj);
+                            System.out.println(obj.get("token"));
 
-                        //Thêm phần chuyển trang vào đây!!!!
-                        //
-                        startActivity(new Intent
-                                (Login.this, Profile.class));
-                        //Show Toast
-                        Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            //Lưu Token vào SharePrefs
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putString("token", obj.get("token").toString());
+                            editor.commit();
+                            System.out.println("test prefs-------------------------------------------------------------------------");
+                            System.out.println(sharedpreferences.getString("token",""));
+
+                            //Show Toast
+                            Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+                            //Chuyển trang
+                            startActivity(new Intent
+                                    (Login.this, Profile.class));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
 
@@ -138,27 +153,29 @@ public class Login extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println("That Bai");
+
                         //Show Toast
                         Toast.makeText(Login.this, "Login Fail", Toast.LENGTH_SHORT).show();
                     }
-                }
-        )
+                })
 
                 //Truyền dữ liệu theo params
-        {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("phone", phone);
-                params.put("password", password);
+                {
+                    @Override
+                    protected Map<String, String> getParams()
+                    {
+                        Map<String, String>  params = new HashMap<String, String>();
+                        params.put("phone", phone);
+                        params.put("password", password);
 
-                return params;
-            }
-        };
+                        return params;
+                    }
+                };
 
-        //Thực thi Call API
-        queue.add(postRequest);
+        //Tạo request
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //Thêm request vào Call API
+        requestQueue.add(stringRequest);
     }
 }

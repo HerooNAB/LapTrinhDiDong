@@ -7,17 +7,19 @@ public class User {
     public String password;
     public String avatar;
     public String bio;
+    public String token;
 
     public User() {
     }
 
-    public User(String name, String phone, String email, String password, String avatar, String bio) {
+    public User(String name, String phone, String email, String password, String avatar, String bio, String token) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.password = password;
         this.avatar = avatar;
         this.bio = bio;
+        this.token = token;
     }
 
     public String getName() {
@@ -66,5 +68,13 @@ public class User {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

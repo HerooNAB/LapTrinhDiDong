@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidUI"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Profile.Profile"></activity>
+        <activity android:name=".Profile.Profile" />
         <activity android:name=".EditProfile.EditProfile" />
         <activity android:name=".CreatePost.CreatePosts" />
         <activity
@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.androiui.MainActivity.MainActivity" />
+        <activity android:name=".MainActivity.MainActivity" />
     </application>
 
 </manifest>
