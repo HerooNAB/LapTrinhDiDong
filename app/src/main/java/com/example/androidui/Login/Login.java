@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.androidui.MainActivity.MainActivity;
 import com.example.androidui.Profile.Profile;
 import com.example.androidui.R;
 import com.example.androidui.Register.Register;
@@ -141,7 +142,7 @@ public class Login extends AppCompatActivity {
 
                             //Chuyển trang
                             startActivity(new Intent
-                                    (Login.this, Profile.class));
+                                    (Login.this, MainActivity.class));
 
                         } catch (JSONException e) {
                             e.printStackTrace();

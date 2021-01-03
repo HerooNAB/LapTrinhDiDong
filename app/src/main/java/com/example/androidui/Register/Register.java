@@ -215,6 +215,7 @@ public class Register extends AppCompatActivity {
                         //ShowToast
                         Toast.makeText(Register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
                         System.out.println("Thanh cong");
+
                     }
                 },
                 //Signup Fail

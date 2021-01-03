@@ -5,4 +5,6 @@
     <string name="mobileerror">Enter a valid mobile</string>
     <string name="dateerror">Enter a valid date</string>
     <string name="ageerror">Enter a valid age</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
