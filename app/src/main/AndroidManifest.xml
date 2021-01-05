@@ -11,9 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidUI"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Profile.Profile" />
-        <activity android:name=".EditProfile.EditProfile" />
-        <activity android:name=".CreatePost.CreatePosts" />
+        <activity
+            android:name=".Profile.Profile"
+            android:label=""
+            android:theme="@style/AppTheme.FullScreen"/>
+        <activity
+            android:name=".EditProfile.EditProfile"
+            android:label=""
+            android:theme="@style/AppTheme.FullScreen"/>
+        <activity
+            android:name=".CreatePost.CreatePosts"
+            android:label=""
+            android:theme="@style/AppTheme.FullScreen"/>
         <activity
             android:name=".Register.Register"
             android:label=""

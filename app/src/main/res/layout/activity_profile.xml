@@ -4,25 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@drawable/header_login"
-        android:id="@+id/bar">
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:background="@drawable/header_login">
-
         </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bar">
+        android:layout_below="@id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,23 +74,69 @@
 
                 <Button
                     android:id="@+id/BtnEdit"
-                    android:layout_width="300dp"
-                    android:layout_height="30dp"
+                    android:layout_width="320dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:background="@drawable/bg_ui"
                     android:textColor="@color/colorWhite"
                     android:text="Edit Profile"
                     android:textAllCaps="false"
                     android:textStyle="bold"
-                    android:textSize="10dp">
+                    android:textSize="14dp">
                 </Button>
-            </LinearLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPosts"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="10dp">
+
+                </View>
+
+                <TextView
+                    android:id="@+id/tvPostsProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Posts "
+                    android:textSize="14dp"
+                    android:textColor="@color/colorPrimaryDark">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvFollowers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Followers "
+                    android:textSize="14dp"
+                    android:textColor="@color/colorPrimaryDark">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvFollowing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Following "
+                    android:textSize="14dp"
+                    android:textColor="@color/colorPrimaryDark">
+                </TextView>
+            </LinearLayout>
+
+            <View
+                style="@style/Divider"
+                android:layout_marginTop="5dp">
+            </View>
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/rvPosts"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginTop="10dp">-->
+<!---->
+<!--            </androidx.recyclerview.widget.RecyclerView>-->
 
         </LinearLayout>
 

@@ -5,43 +5,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite">
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:background="@drawable/header_login">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
 
                 <ImageView
+                    android:id="@+id/imvBackProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_arrow_back_24" />
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:onClick="GoBackProfile"/>
+                // Quay về trang profile
+
 
                 <TextView
+                    android:id="@+id/tvtDone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_marginTop="27dp"
                     android:text="Done"
                     android:textColor="@color/colorBlue"
                     android:textSize="18dp"
-                    android:textStyle="bold" />
-
+                    android:textStyle="bold"
+                    android:onClick="Save"/> // Hoàn thành chỉnh sửa profile
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,17 +57,19 @@
             android:layout_height="110dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:src="@drawable/avatardefault" />
+            android:src="@drawable/avatardefault"
+            android:onClick="Zooming"/> // Phóng to ảnh profile
 
         <TextView
-            android:id="@+id/txtChangePhoto"
+            android:id="@+id/tvtChangePhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="Change Profile Photo"
             android:textColor="@color/colorBlue"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:onClick="ChangePhoto"/> // Thay ảnh profile
 
         <View
             style="@style/Divider"
@@ -77,28 +81,32 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="Name"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:inputType="textPersonName"/>
 
         <EditText
             android:id="@+id/etPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone number"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:inputType="phone"/>
 
         <EditText
             android:id="@+id/etBio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Bio"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:inputType="text"/>
 
         <EditText
             android:id="@+id/etMail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:inputType="textEmailAddress"/>
 
     </LinearLayout>
 </LinearLayout>
