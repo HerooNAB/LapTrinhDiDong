@@ -14,6 +14,7 @@ import com.example.Fragments.HomeFragment;
 import com.example.Fragments.ProfileFragment;
 import com.example.androidui.Profile.Profile;
 import com.example.androidui.R;
+import com.example.androidui.Test.TestActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
                             break;
                         case R.id.nav_add:
-                            selectedfragment = null;
+                            Intent intent1 = new Intent(MainActivity.this, TestActivity.class);
+                            startActivity(intent1);
                             break;
                         case R.id.nav_heart:
                             break;

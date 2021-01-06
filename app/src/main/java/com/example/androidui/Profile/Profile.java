@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.androidui.EditProfile.EditProfile;
+import com.example.androidui.Login.Login;
 import com.example.androidui.R;
 
 import java.util.HashMap;
@@ -25,30 +23,13 @@ import java.util.Map;
 
 public class Profile extends AppCompatActivity {
 
-    private Button BtnEdit;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        BtnEdit = findViewById(R.id.BtnEdit);
-        BtnEdit.setOnClickListener(submitEdit);
-
-
         loadUser();
     }
-
-
-    //Chuyen den trang Edit Profile
-    private View.OnClickListener submitEdit = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(Profile.this, EditProfile.class);
-            startActivity(intent);
-        }
-    };
-
 
     private void loadUser() {
 
@@ -75,8 +56,6 @@ public class Profile extends AppCompatActivity {
 
                         //Show Toast
                         Toast.makeText(Profile.this, "Profile Successful", Toast.LENGTH_SHORT).show();
-
-
                     }
                 },
 

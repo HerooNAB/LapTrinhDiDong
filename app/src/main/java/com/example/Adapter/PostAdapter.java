@@ -1,38 +1,71 @@
 package com.example.Adapter;
 
+import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.Models.Post;
 import com.example.androidui.R;
+import com.example.androidui.Test.TestActivity;
+import com.squareup.picasso.Picasso;
 
-public class PostAdapter {
+import java.util.ArrayList;
+import java.util.List;
+
+public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
+
+    private List<Post>listPost;
+    private Context context;
+
+    public PostAdapter(List<Post> listPost, Context context) {
+        this.listPost = listPost;
+        this.context = context;
+    }
+
+
+    //gọi giao diện
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item,parent,false);
+        return new ViewHolder(v);
+    }
+
+    //set dữ liệu cho giao diện
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Post post = listPost.get(position);
+        holder.textViewIdPost.setText(post.getIdPost());
+        holder.textViewCaption.setText(post.getCaption());
+        holder.textViewImgUrl.setText(post.getImage());
+
+        Picasso.get().load(post.getImage()).into(holder.imagePost);
+    }
+
+    @Override
+    public int getItemCount() {
+        return listPost.size();
+    }
+
+    //Gọi đến giao diện
     public class ViewHolder extends RecyclerView.ViewHolder{
-
-        public ImageView image_profile, post_image, like, comment, save, more;
-        public TextView username, likes, publisher, description, comments;
-
+        public TextView textViewIdPost,textViewCaption,textViewImgUrl;
+        public ImageView imagePost;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            image_profile = itemView.findViewById(R.id.image_profile);
-            username = itemView.findViewById(R.id.username);
-            post_image = itemView.findViewById(R.id.post_image);
-            like = itemView.findViewById(R.id.like);
-            comment = itemView.findViewById(R.id.comment);
-            save = itemView.findViewById(R.id.save);
-            likes = itemView.findViewById(R.id.likes);
-            publisher = itemView.findViewById(R.id.publisher);
-            description = itemView.findViewById(R.id.description);
-            comments = itemView.findViewById(R.id.comments);
-            more = itemView.findViewById(R.id.more);
+            textViewIdPost = itemView.findViewById(R.id.idPost);
+            textViewCaption = itemView.findViewById(R.id.caption);
+            textViewImgUrl = itemView.findViewById(R.id.imgUrl);
+            imagePost = itemView.findViewById(R.id.imagePost);
+
         }
-
-
-
-
     }
 }
