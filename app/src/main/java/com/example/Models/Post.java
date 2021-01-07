@@ -4,12 +4,14 @@ public class Post {
     private String idPost;
     private String image;
     private String caption;
+    private String postBy;
 
 
-    public Post(String idPost, String image, String caption) {
+    public Post(String idPost, String image, String caption, String postBy) {
         this.idPost = idPost;
         this.image = image;
         this.caption = caption;
+        this.postBy = postBy;
     }
 
     public String getIdPost() {
@@ -24,15 +26,7 @@ public class Post {
         return caption;
     }
 
-    public void setIdPost(String idPost) {
-        this.idPost = idPost;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public void setCaption(String caption) {
-        this.caption = caption;
+    public String getPostBy() {
+        return postBy;
     }
 }

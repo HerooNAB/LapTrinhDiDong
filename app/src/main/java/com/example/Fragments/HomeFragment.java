@@ -92,16 +92,16 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.recycler_view_news);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         loadListPost();
-
-
         return view;
     }
-    private void loadListPost() {
+
+    public void loadListPost() {
         SharedPreferences sharedpreferences;
         sharedpreferences = this.getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String token = sharedpreferences.getString("token","");
@@ -120,8 +120,10 @@ public class HomeFragment extends Fragment {
                         Post item = new Post(
                                 Post.getString("_id"),
                                 Post.getString("photo"),
-                                Post.getString("caption")
+                                Post.getString("caption"),
+                                Post.getString("postedBy")
                         );
+
                         posts.add(item);
 
                     }

@@ -55,7 +55,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/recycler_view_news"
-                android:layout_below="@id/bar"/>
+                android:layout_below="@id/bar">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
 
     </ScrollView>
 

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -20,9 +21,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.Models.Post;
+import com.example.Models.User;
 import com.example.androidui.EditProfile.EditProfile;
+import com.example.androidui.Login.Login;
+import com.example.androidui.MainActivity.MainActivity;
 import com.example.androidui.Profile.Profile;
 import com.example.androidui.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +43,9 @@ import java.util.Map;
  */
 public class ProfileFragment extends Fragment {
     private Button BtnEdit;
+    private TextView tvName;
+    public User user;
+    
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -83,7 +95,12 @@ public class ProfileFragment extends Fragment {
         BtnEdit.setOnClickListener(submitEdit);
 
         loadUser();
+
         return view;
+    }
+
+    private void linkViews() {
+
     }
 
     private View.OnClickListener submitEdit = new View.OnClickListener() {
@@ -112,13 +129,30 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         //In ra User được trả về
-                        System.out.println(response);
+                        try {
 
-                        //Thêm các action khác vào đây!
-                        //
+                            JSONObject obj = new JSONObject(response);
 
-                        //Show Toast
-                        Toast.makeText(getActivity(), "Profile Successful", Toast.LENGTH_SHORT).show();
+
+
+
+                            //Lưu Token vào SharePrefs
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putString("token", obj.get("token").toString());
+                            editor.commit();
+                            System.out.println("test prefs-------------------------------------------------------------------------");
+                            System.out.println(sharedpreferences.getString("token",""));
+
+                            //Show Toast
+                            Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT).show();
+
+                            //Chuyển trang
+                            startActivity(new Intent
+                                    (getActivity(), MainActivity.class));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
 

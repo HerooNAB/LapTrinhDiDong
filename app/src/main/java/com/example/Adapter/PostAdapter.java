@@ -34,18 +34,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_item,parent,false);
         return new ViewHolder(v);
     }
 
     //set dữ liệu cho giao diện
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         Post post = listPost.get(position);
+        /*
         holder.textViewIdPost.setText(post.getIdPost());
         holder.textViewCaption.setText(post.getCaption());
         holder.textViewImgUrl.setText(post.getImage());
-        Picasso.get().load(post.getImage()).into(holder.imagePost);
+        Picasso.get().load(post.getImage()).into(holder.imagePost);*/
+        holder.textViewName.setText(post.getPostBy());
+        holder.textViewCaption.setText(post.getCaption());
+        Picasso.get().load(post.getImage()).into(holder.postImage);
     }
 
     @Override
@@ -55,16 +60,24 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     //Gọi đến giao diện
     public class ViewHolder extends RecyclerView.ViewHolder{
+        /*
         public TextView textViewIdPost,textViewCaption,textViewImgUrl;
         public ImageView imagePost;
+        */
+        public TextView textViewCaption,textViewName;
+        public ImageView postImage;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+        /*
             textViewIdPost = itemView.findViewById(R.id.idPost);
             textViewCaption = itemView.findViewById(R.id.caption);
             textViewImgUrl = itemView.findViewById(R.id.imgUrl);
             imagePost = itemView.findViewById(R.id.imagePost);
-
+        */
+            textViewName = itemView.findViewById(R.id.username);
+            postImage = itemView.findViewById(R.id.post_image);
+            textViewCaption = itemView.findViewById(R.id.description);
         }
     }
 }

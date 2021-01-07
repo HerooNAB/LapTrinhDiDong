@@ -21,9 +21,6 @@ import com.example.androidui.EditProfile.EditProfile;
 import com.example.androidui.Login.Login;
 import com.example.androidui.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,24 +62,7 @@ public class Profile extends AppCompatActivity {
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            System.out.println(obj);
-                            System.out.println(obj.get("token"));
-
-                            //Lưu Token vào SharePrefs
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
-                            editor.putString("token", obj.get("token").toString());
-                            editor.commit();
-                            System.out.println("test prefs-------------------------------------------------------------------------");
-                            System.out.println(sharedpreferences.getString("token",""));
-
-                            //Show Toast
-                            Toast.makeText(Profile.this, "Login Successful", Toast.LENGTH_SHORT).show();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        //In ra User được trả về
                         System.out.println(response);
 
                         //Thêm các action khác vào đây!

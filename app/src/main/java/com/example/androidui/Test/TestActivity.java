@@ -75,7 +75,8 @@ public class TestActivity extends AppCompatActivity {
                             Post item = new Post(
                                     Post.getString("_id"),
                                     Post.getString("photo"),
-                                    Post.getString("caption")
+                                    Post.getString("caption"),
+                                    Post.getString("postBy")
                         );
                         posts.add(item);
 
