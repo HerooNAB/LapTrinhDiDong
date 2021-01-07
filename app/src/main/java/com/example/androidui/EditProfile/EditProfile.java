@@ -47,6 +47,8 @@ public class EditProfile extends AppCompatActivity {
     //Nut thay doi hinh anh profile
     public void ChangePhoto(View view) {
         //Code change photo da tao su kien onClick
+        Intent intent = new Intent(EditProfile.this, Profile.class);
+        startActivity(intent);
 
     }
 

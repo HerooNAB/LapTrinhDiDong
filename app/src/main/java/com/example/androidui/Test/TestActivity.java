@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -39,6 +40,7 @@ public class TestActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Post> posts;
+    ProgressBar progress_circular;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class TestActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         loadListPost();
+
     }
 
 
@@ -66,13 +69,13 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray jsonArray = response.getJSONArray("posts");
-                    for (int i = 0;i<jsonArray.length();i++){
-                        JSONObject Post = jsonArray.getJSONObject(i);
-                        Post item = new Post(
-                                 Post.getString("_id"),
-                                 Post.getString("photo"),
-                                 Post.getString("caption")
+                                JSONArray jsonArray = response.getJSONArray("posts");
+                        for (int i = 0;i<jsonArray.length();i++){
+                            JSONObject Post = jsonArray.getJSONObject(i);
+                            Post item = new Post(
+                                    Post.getString("_id"),
+                                    Post.getString("photo"),
+                                    Post.getString("caption")
                         );
                         posts.add(item);
 
@@ -101,4 +104,7 @@ public class TestActivity extends AppCompatActivity {
         };
         queue.add(request);
     }
+
+
+
 }

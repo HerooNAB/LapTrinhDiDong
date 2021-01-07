@@ -45,7 +45,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         holder.textViewIdPost.setText(post.getIdPost());
         holder.textViewCaption.setText(post.getCaption());
         holder.textViewImgUrl.setText(post.getImage());
-
         Picasso.get().load(post.getImage()).into(holder.imagePost);
     }
 

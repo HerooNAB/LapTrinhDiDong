@@ -46,37 +46,18 @@
         </Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/bar">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/recycler_view_story"
-                android:layout_margin="5dp"
+                android:id="@+id/recycler_view_news"
                 android:layout_below="@id/bar"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/recycler_view"
-                android:layout_below="@id/recycler_view_story"/>
+    </ScrollView>
 
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <ProgressBar
-        android:id="@+id/progress_circular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.example.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,12 +14,26 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.Adapter.PostAdapter;
 import com.example.Models.Post;
 import com.example.androidui.R;
+import com.example.androidui.Test.TestActivity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,8 +43,8 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private PostAdapter postAdapter;
-    private List<Post> postList;
+    private RecyclerView.Adapter adapter;
+    private List<Post> posts;
 
     ProgressBar progressBar;
     
@@ -76,9 +92,61 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        recyclerView = view.findViewById(R.id.recycler_view_news);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        loadListPost();
+
 
         return view;
+    }
+    private void loadListPost() {
+        SharedPreferences sharedpreferences;
+        sharedpreferences = this.getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String token = sharedpreferences.getString("token","");
+
+        //API link
+        String ServerName = "https://whatfoods.herokuapp.com/allpost";
+        posts = new ArrayList<>();
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, ServerName, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("posts");
+                    for (int i = 0;i<jsonArray.length();i++){
+                        JSONObject Post = jsonArray.getJSONObject(i);
+                        Post item = new Post(
+                                Post.getString("_id"),
+                                Post.getString("photo"),
+                                Post.getString("caption")
+                        );
+                        posts.add(item);
+
+                    }
+                    adapter = new PostAdapter(posts, getContext());
+                    recyclerView.setAdapter(adapter);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Authorization", token);
+                return headers;
+            }
+        };
+        queue.add(request);
     }
 }

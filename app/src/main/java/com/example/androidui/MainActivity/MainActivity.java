@@ -61,14 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
                             break;
                         case R.id.nav_add:
-                            Intent intent1 = new Intent(MainActivity.this, TestActivity.class);
-                            startActivity(intent1);
                             break;
                         case R.id.nav_heart:
                             break;
                         case R.id.nav_profile:
-                            Intent intent = new Intent(MainActivity.this,Profile.class);
-                            startActivity(intent);
+                            selectedfragment = new ProfileFragment();
                             break;
                     }
                     if (selectedfragment != null) {
