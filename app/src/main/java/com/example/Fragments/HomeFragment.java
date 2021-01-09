@@ -25,6 +25,8 @@ import com.example.Adapter.PostAdapter;
 import com.example.Models.Post;
 import com.example.androidui.R;
 import com.example.androidui.Test.TestActivity;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -97,8 +99,12 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_news);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        linkViews();
         loadListPost();
         return view;
+    }
+
+    private void linkViews() {
     }
 
     public void loadListPost() {
@@ -117,12 +123,16 @@ public class HomeFragment extends Fragment {
                     JSONArray jsonArray = response.getJSONArray("posts");
                     for (int i = 0;i<jsonArray.length();i++){
                         JSONObject Post = jsonArray.getJSONObject(i);
+
                         Post item = new Post(
                                 Post.getString("_id"),
                                 Post.getString("photo"),
                                 Post.getString("caption"),
                                 Post.getString("postedBy")
                         );
+                        JSONObject postBy = new JSONObject(item.getPostBy());
+                        System.out.println(postBy.getString("name"));
+
 
                         posts.add(item);
 

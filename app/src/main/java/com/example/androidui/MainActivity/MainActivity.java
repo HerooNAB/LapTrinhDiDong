@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.Fragments.HomeFragment;
+import com.example.Fragments.NotificationFragment;
 import com.example.Fragments.ProfileFragment;
+import com.example.Fragments.SearchFragment;
 import com.example.androidui.Profile.Profile;
 import com.example.androidui.R;
 import com.example.androidui.Test.TestActivity;
@@ -58,11 +60,12 @@ public class MainActivity extends AppCompatActivity {
                             selectedfragment = new HomeFragment();
                             break;
                         case R.id.nav_search:
-
+                            selectedfragment = new SearchFragment();
                             break;
                         case R.id.nav_add:
                             break;
                         case R.id.nav_heart:
+                            selectedfragment = new NotificationFragment();
                             break;
                         case R.id.nav_profile:
                             selectedfragment = new ProfileFragment();

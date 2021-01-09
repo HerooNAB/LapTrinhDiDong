@@ -9,11 +9,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_like"
+        android:src="@drawable/ic_more"
         android:id="@+id/more"
         android:layout_margin="15dp"/>
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -35,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="Khang lol"
+                android:text="tên người dùng"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -50,11 +51,10 @@
                 android:id="@+id/post_image"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:src="@drawable/avatar"
                 android:scaleType="centerCrop"
+                android:src="@drawable/logo"
                 app:layout_constraintDimensionRatio="1:1"
                 tools:ignore="MissingConstraints" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -83,16 +83,18 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_like" />
+                android:src="@drawable/ic_save" />
 
         </RelativeLayout>
 
 
         <TextView
             android:id="@+id/likes"
+
+            android:text="01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="15dp"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
 
@@ -101,6 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:text="Đinh Chánh Nghĩa"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
 
@@ -121,9 +124,8 @@
             android:layout_marginBottom="10dp"
             android:text="View All 20 Comments"
             android:textColor="@color/colorAccent" />
-        <View
-            style="@style/Divider_Post">
-        </View>
+
+        <View style="@style/Divider_Post"></View>
 
     </LinearLayout>
 
