@@ -99,7 +99,9 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_news);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        progressBar = view.findViewById(R.id.progressBar);
         loadListPost();
+
         return view;
     }
 
@@ -136,6 +138,9 @@ public class HomeFragment extends Fragment {
                     }
                     adapter = new PostAdapter(posts, getContext());
                     recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    progressBar.setVisibility(View.GONE);
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
