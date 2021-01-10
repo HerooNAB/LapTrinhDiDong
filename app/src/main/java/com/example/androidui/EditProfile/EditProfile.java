@@ -42,18 +42,42 @@ public class EditProfile extends AppCompatActivity {
     CircleImageView imgProfile;
     EditText etName, etBio, etMail;
 
-
-
-    static final int PICK_PHOTO_LIBRARY = 0;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
         imvBackProfile = findViewById(R.id.imvBackProfile); // Quay ve Profile
+        imvBackProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(getFragmentManager().getBackStackEntryCount() > 1)
+                {
+                    getFragmentManager().popBackStack();
+                }
+                else {
+                    System.out.println("Lỗi");
+                }
+            }
+        });
         tvtDone = findViewById(R.id.tvtDone);               // Submit chinh sua profile
+        tvtDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Code nut Done here
+                String name = etName.getText().toString();
+                String bio = etBio.getText().toString();
+                String email = etMail.getText().toString();
+                editProfile(name, bio, email);
+                finish();
+            }
+        });
         tvtChangePhoto = findViewById(R.id.tvtChangePhoto); // Thay anh profile
+        tvtChangePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectImage(EditProfile.this);
+            }
+        });
         etName = findViewById(R.id.etName);                 // Nhap ten nguoi dung
         etBio = findViewById(R.id.etBio);                   // Nhap Bio
         etMail = findViewById(R.id.etMail);                 // Nhap Email
@@ -61,8 +85,6 @@ public class EditProfile extends AppCompatActivity {
 
         receiveData();
     }
-
-
 
     //Du lieu User chuyen tu Profile sang EditProfile
     private void receiveData() {
@@ -78,89 +100,10 @@ public class EditProfile extends AppCompatActivity {
     }
 
 
-    //quay ve profile fragment
-    public void onBackPressed(View view) {
-        if(getFragmentManager().getBackStackEntryCount() > 1)
-        {
-            getFragmentManager().popBackStack();
-        }
-        else {
-            super.onBackPressed();
-        }
-    }
-
-    //Nut thay doi hinh anh profile
-    public void ChangePhoto(View view) {
-        selectImage(EditProfile.this);
-    }
-
-    //Nut luu ket qua chinh sua profile
-    public void Save(View view) {
-        //Code nut Done here
-        String name = etName.getText().toString();
-        String bio = etBio.getText().toString();
-        String email = etMail.getText().toString();
-        editProfile(name, bio, email);
-        UploadImage();
-        finish();
-    }
-
     //Nhan vao anh profile
     public void Zooming(View view) {
         //Code nhan vao anh profile de xem chi tiet anh
     }
-
-    private void editProfile(String name, String bio, String email) {
-            SharedPreferences sharedpreferences;
-            sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-            String token = sharedpreferences.getString("token","");
-            String avatarUrl = sharedpreferences.getString("AvatarURL", "");
-            System.out.println(avatarUrl);
-            //API
-            String ServerName = "https://whatfoods.herokuapp.com/user/me/update";
-            //Call API
-            RequestQueue queue = Volley.newRequestQueue(this);
-            StringRequest postRequest = new StringRequest(Request.Method.PUT, ServerName,
-                    new com.android.volley.Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            //ShowToast
-                            Toast.makeText(EditProfile.this, "Edit Successful", Toast.LENGTH_SHORT).show();
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            //Show Toast
-                            Toast.makeText(EditProfile.this, "Edit Fail", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-            )
-                    //Truyền dữ liệu theo params
-            {
-                @Override
-                protected Map<String, String> getParams()
-                {
-                    Map<String, String>  params = new HashMap<String, String>();
-                    params.put("name", name);
-                    params.put("bio", bio);
-                    params.put("email", email);
-                    params.put("avatar", avatarUrl);
-
-                    return params;
-                }
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String, String> headers = new HashMap<>();
-                    headers.put("Authorization", token);
-                    return headers;
-                }
-            };
-
-            //Thực thi Call API
-            queue.add(postRequest);
-        }
 
     //Service UploadImage
     private void UploadImage(){
@@ -184,7 +127,7 @@ public class EditProfile extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         editor.putString("AvatarURL", response);
                         editor.commit();
-                        System.out.println(response);
+                        System.out.println(sharedpreferences.getString("AvatarURL", ""));
                         System.out.println("UpLoadImage Successful");
                     }
                 },
@@ -220,6 +163,55 @@ public class EditProfile extends AppCompatActivity {
         //Thêm request vào Call API
         requestQueue.add(stringRequest);
     }
+
+    private void editProfile(String name, String bio, String email) {
+            SharedPreferences sharedpreferences;
+            sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            String token = sharedpreferences.getString("token","");
+            String avatarUrl = sharedpreferences.getString("AvatarURL", "");
+            System.out.println(avatarUrl);
+            //API
+            String ServerName = "https://whatfoods.herokuapp.com/user/me/update";
+            //Call API
+            RequestQueue queue = Volley.newRequestQueue(this);
+            StringRequest postRequest = new StringRequest(Request.Method.PUT, ServerName,
+                    new com.android.volley.Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            //ShowToast
+                            Toast.makeText(EditProfile.this, "Edit Successful", Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            //Show Toast
+                            Toast.makeText(EditProfile.this, "Edit Fail", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            )
+                    //Truyền dữ liệu theo params
+            {
+                @Override
+                protected Map<String, String> getParams()
+                {
+                    Map<String, String>  params = new HashMap<String, String>();
+                    params.put("name", name);
+                    params.put("bio", bio);
+                    params.put("email", email);
+                    params.put("avatar", avatarUrl);
+
+                    return params;
+                }
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Authorization", token);
+                    return headers;
+                }
+            };
+            //Thực thi Call API
+            queue.add(postRequest);
+        }
 
     private void selectImage(Context context) {
         final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
@@ -269,6 +261,7 @@ public class EditProfile extends AppCompatActivity {
                             editor.commit();
                             System.out.println(encodedImage);
                             System.out.println("alo alo");
+                            UploadImage();
 
                         }
                         imgProfile.setImageBitmap(selectedImage);
@@ -298,6 +291,7 @@ public class EditProfile extends AppCompatActivity {
                                     editor.commit();
                                     System.out.println(encodedImage);
                                     System.out.println("alo alo gallery");
+                                    UploadImage();
                                 }
                                 imgProfile.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                                 //imvPhoto.setImageBitmap(BitmapFactory.decodeFile(picturePath));

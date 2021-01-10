@@ -177,7 +177,6 @@ public class CreatePosts extends AppCompatActivity {
         imgBtnUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UploadImage();
                 UploadPost();
             }
         });
@@ -351,6 +350,7 @@ public class CreatePosts extends AppCompatActivity {
                             editor.commit();
                             System.out.println(encodedImage);
                             System.out.println("alo alo");
+                            UploadImage();
                         }
                         //imvPhoto.setImageBitmap(selectedImage);
                     }
@@ -378,6 +378,7 @@ public class CreatePosts extends AppCompatActivity {
                                     editor.commit();
                                     System.out.println(encodedImage);
                                     System.out.println("alo alo gallery");
+                                    UploadImage();
                                 }
 
                                 //imvPhoto.setImageBitmap(BitmapFactory.decodeFile(picturePath));

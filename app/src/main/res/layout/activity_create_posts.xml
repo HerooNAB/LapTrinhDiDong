@@ -26,8 +26,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_close_24"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"
-                    android:onClick="ClosePost"/> //Tắt đăng bài post
+                    android:layout_alignParentStart="true" /> //Tắt đăng bài post
 
                 <TextView
                     android:id="@+id/tvPosting"
@@ -39,8 +38,7 @@
                     android:text="Post"
                     android:textColor="@color/colorBlue"
                     android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:onClick="AddPost"/> //Thêm bài viết
+                    android:textStyle="bold" /> //Thêm bài viết
 
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -104,8 +102,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/edtContextPost"
                 android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:onClick="DisplayPhoto"> //Xử lý sự kiện phóng to ảnh
+                android:layout_gravity="center"> //Xử lý sự kiện phóng to ảnh
 
             </ImageView>
         </LinearLayout>
@@ -126,8 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="370dp"
-                android:src="@drawable/ic_baseline_photo_library_24"
-                android:onClick="AddPhotos"> //Xử lý sự kiện thêm ảnh từ thư viện
+                android:src="@drawable/ic_baseline_photo_library_24"> //Xử lý sự kiện thêm ảnh từ thư viện
             </ImageButton>
 
             <ImageButton
@@ -135,8 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="320dp"
-                android:src="@drawable/ic_baseline_camera_enhance_24"
-                android:onClick="HandleCamera"> //Xử lý sự kiện chụp ảnh
+                android:src="@drawable/ic_baseline_camera_enhance_24"> //Xử lý sự kiện chụp ảnh
 
             </ImageButton>
         </RelativeLayout>
