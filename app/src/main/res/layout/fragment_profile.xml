@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.Fragments.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -26,7 +27,6 @@
                 android:id="@+id/imgProfile"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:src="@drawable/avatar"
                 android:layout_gravity="center" />
 
             <LinearLayout
@@ -38,7 +38,7 @@
                     android:id="@+id/txtProfileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kayn Nguyen"
+                    android:text=""
                     android:layout_below="@+id/imgProfile"
 
                     android:textStyle="bold"
@@ -58,7 +58,7 @@
                     android:id="@+id/txtBio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Caption"
+                    android:text=""
                     android:textSize="18dp"
                     android:textStyle="normal"
                     android:layout_below="@+id/txtProfileName"
@@ -92,38 +92,105 @@
 
                 </View>
 
-                <TextView
-                    android:id="@+id/tvPostsProfile"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="Posts "
-                    android:textSize="14dp"
-                    android:textColor="@color/colorPrimaryDark">
-                </TextView>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/tvPostsProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Posts "
+                        android:textSize="14dp"
+                        android:textColor="@color/colorPrimaryDark">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tvPostsCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="2dp"
+                        android:text="500">
+                    </TextView>
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvFollowers"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="Followers "
-                    android:textSize="14dp"
-                    android:textColor="@color/colorPrimaryDark">
-                </TextView>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/tvFollowers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Followers "
+                        android:textSize="14dp"
+                        android:textColor="@color/colorPrimaryDark">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tvFollowersCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="2dp"
+                        android:text="500">
+                    </TextView>
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvFollowing"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="Following "
-                    android:textSize="14dp"
-                    android:textColor="@color/colorPrimaryDark">
-                </TextView>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/tvFollowing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Following "
+                        android:textSize="14dp"
+                        android:textColor="@color/colorPrimaryDark">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tvFollowingCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="2dp"
+                        android:text="500">
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/tvEmailing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Email: "
+                        android:textSize="14dp"
+                        android:textColor="@color/colorPrimaryDark">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tvDisplayEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="2dp">
+                    </TextView>
+                </LinearLayout>
+
             </LinearLayout>
 
             <View
@@ -131,13 +198,13 @@
                 android:layout_marginTop="5dp">
             </View>
 
-            <!--            <androidx.recyclerview.widget.RecyclerView-->
-            <!--                android:id="@+id/rvPosts"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_marginTop="10dp">-->
-            <!---->
-            <!--            </androidx.recyclerview.widget.RecyclerView>-->
+              <androidx.recyclerview.widget.RecyclerView
+                  android:id="@+id/rvMyPosts"
+                  android:layout_width="wrap_content"
+                  android:layout_marginLeft="0dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_height="wrap_content">
+              </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
 

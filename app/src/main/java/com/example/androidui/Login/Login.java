@@ -1,7 +1,5 @@
 package com.example.androidui.Login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,19 +12,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidui.MainActivity.MainActivity;
-import com.example.androidui.Profile.Profile;
 import com.example.androidui.R;
 import com.example.androidui.Register.Register;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

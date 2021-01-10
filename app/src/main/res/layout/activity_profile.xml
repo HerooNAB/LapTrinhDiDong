@@ -37,7 +37,7 @@
                     android:id="@+id/txtProfileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kayn Nguyen"
+                    android:text=""
                     android:layout_below="@+id/imgProfile"
 
                     android:textStyle="bold"
@@ -57,7 +57,7 @@
                     android:id="@+id/txtBio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Caption"
+                    android:text=""
                     android:textSize="18dp"
                     android:textStyle="normal"
                     android:layout_below="@+id/txtProfileName"
@@ -82,7 +82,8 @@
                     android:text="Edit Profile"
                     android:textAllCaps="false"
                     android:textStyle="bold"
-                    android:textSize="14dp">
+                    android:textSize="14dp"
+                    android:onClick="goToEditProfile">
                 </Button>
 
                 <View

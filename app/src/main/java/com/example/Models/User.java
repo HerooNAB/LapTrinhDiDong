@@ -9,7 +9,11 @@ public class User {
     public String bio;
     public String token;
 
-    public User() {
+    public User(String name, String bio, String email, String avatar) {
+        this.name = name;
+        this.bio = bio;
+        this.email = email;
+        this.avatar = avatar;
     }
 
     public User(String name, String phone, String email, String password, String avatar, String bio, String token) {

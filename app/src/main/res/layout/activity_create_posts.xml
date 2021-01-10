@@ -21,28 +21,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:id="@+id/imvClosePost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_close_24"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"/>
+                    android:layout_alignParentStart="true"
+                    android:onClick="ClosePost"/> //Tắt đăng bài post
 
                 <TextView
+                    android:id="@+id/tvPosting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
                     android:text="Post"
+                    android:textColor="@color/colorBlue"
                     android:textSize="18dp"
                     android:textStyle="bold"
-                    android:textColor="@color/colorBlue"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="10dp"/>
+                    android:onClick="AddPost"/> //Thêm bài viết
 
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -58,7 +62,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgProfile"
                     android:layout_width="40dp"
@@ -66,31 +71,77 @@
                     android:src="@drawable/avatar"
                     android:layout_gravity="start" />
                 <TextView
+                    android:id="@+id/tvUserPost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kayn Nguyen"
                     android:padding="5dp"
                     android:textSize="16dp"
                     android:textStyle="bold"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark"/> //Ten nguoi dang bai post
             </LinearLayout>
         </LinearLayout>
-        <TextView
-            android:id="@+id/tvPost"
-            android:layout_width="411dp"
-            android:layout_height="200dp"
-            android:textSize="14dp"
-            android:hint="Write Something!!!"
-            android:textStyle="normal"
-            android:maxLines="20"/>
-        <View
-            style="@style/Divider">
-        </View>
-    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/txtContentPost"
+                    android:layout_width="410dp"
+                    android:layout_height="200dp"
+                    android:hint="Hôm nay ăn gì?"
+                    android:inputType="textMultiLine"
+                    android:minLines="5"
+                    android:ellipsize="end"
+                    android:textSize="14dp"
+                    android:textStyle="normal">
+                </EditText>
+
+                <ImageView
+                    android:id="@+id/imvPhotos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/txtContentPost"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:onClick="DisplayPhoto"> //Xử lý sự kiện phóng to ảnh
+
+                </ImageView>
+            </LinearLayout>
+       </RelativeLayout>
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imgBtnPhotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="370dp"
+                android:src="@drawable/ic_baseline_photo_library_24"
+                android:onClick="AddPhotos"> //Xử lý sự kiện thêm ảnh từ thư viện
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/imgBtnCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="320dp"
+                android:src="@drawable/ic_baseline_camera_enhance_24"
+                android:onClick="HandleCamera"> //Xử lý sự kiện chụp ảnh
+
+            </ImageButton>
+        </RelativeLayout>
+
+
         <ImageView
             android:id="@+id/circle3"
             android:layout_width="182dp"
