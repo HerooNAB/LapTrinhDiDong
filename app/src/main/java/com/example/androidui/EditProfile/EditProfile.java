@@ -90,14 +90,14 @@ public class EditProfile extends AppCompatActivity {
 
     //Du lieu User chuyen tu Profile sang EditProfile
     private void receiveData() {
-    Bundle bundle = getIntent().getExtras();
-    bundle.getString("name");
-    bundle.getString("bio");
-    bundle.getString("email");
+        Bundle bundle = getIntent().getExtras();
+        bundle.getString("name");
+        bundle.getString("bio");
+        bundle.getString("email");
 
-    etName.setText(getIntent().getStringExtra("name"));
-    etBio.setText(getIntent().getStringExtra("bio"));
-    etMail.setText(getIntent().getStringExtra("email"));
+        etName.setText(getIntent().getStringExtra("name"));
+        etBio.setText(getIntent().getStringExtra("bio"));
+        etMail.setText(getIntent().getStringExtra("email"));
 
     }
 
@@ -167,53 +167,53 @@ public class EditProfile extends AppCompatActivity {
     }
 
     private void editProfile(String name, String bio, String email) {
-            SharedPreferences sharedpreferences;
-            sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-            String token = sharedpreferences.getString("token","");
-            String avatarUrl = sharedpreferences.getString("AvatarURL", "");
-            System.out.println(avatarUrl);
-            //API
-            String ServerName = "https://whatfoods.herokuapp.com/user/me/update";
-            //Call API
-            RequestQueue queue = Volley.newRequestQueue(this);
-            StringRequest postRequest = new StringRequest(Request.Method.PUT, ServerName,
-                    new com.android.volley.Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            //ShowToast
-                            Toast.makeText(EditProfile.this, "Edit Successful", Toast.LENGTH_SHORT).show();
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            //Show Toast
-                            Toast.makeText(EditProfile.this, "Edit Fail", Toast.LENGTH_SHORT).show();
-                        }
+        SharedPreferences sharedpreferences;
+        sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String token = sharedpreferences.getString("token","");
+        String avatarUrl = sharedpreferences.getString("AvatarURL", "");
+        System.out.println(avatarUrl);
+        //API
+        String ServerName = "https://whatfoods.herokuapp.com/user/me/update";
+        //Call API
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest postRequest = new StringRequest(Request.Method.PUT, ServerName,
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //ShowToast
+                        Toast.makeText(EditProfile.this, "Edit Successful", Toast.LENGTH_SHORT).show();
                     }
-            )
-                    //Truyền dữ liệu theo params
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Show Toast
+                        Toast.makeText(EditProfile.this, "Edit Fail", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        )
+                //Truyền dữ liệu theo params
+        {
+            @Override
+            protected Map<String, String> getParams()
             {
-                @Override
-                protected Map<String, String> getParams()
-                {
-                    Map<String, String>  params = new HashMap<String, String>();
-                    params.put("name", name);
-                    params.put("bio", bio);
-                    params.put("email", email);
-                    params.put("avatar", avatarUrl);
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("name", name);
+                params.put("bio", bio);
+                params.put("email", email);
+                params.put("avatar", avatarUrl);
 
-                    return params;
-                }
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String, String> headers = new HashMap<>();
-                    headers.put("Authorization", token);
-                    return headers;
-                }
-            };
-            //Thực thi Call API
-            queue.add(postRequest);
-        }
+                return params;
+            }
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Authorization", token);
+                return headers;
+            }
+        };
+        //Thực thi Call API
+        queue.add(postRequest);
+    }
 
     private void selectImage(Context context) {
         final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
@@ -312,5 +312,4 @@ public class EditProfile extends AppCompatActivity {
         return baos.toByteArray();
     }
 }
-
 

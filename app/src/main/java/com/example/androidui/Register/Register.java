@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -191,10 +193,32 @@ public class Register extends AppCompatActivity {
     private View.OnClickListener submitSignup= new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            if(edtPhoneNumber.length() == 0){
+                edtPhoneNumber.setError("This field is required");
+                edtPhoneNumber.requestFocus();
+            }
+
+            if(edtEmail.length() == 0){
+                edtEmail.setError("This field is required");
+                edtEmail.requestFocus();
+            }
+
+            if(edtPassword.length() == 0){
+                edtPassword.setError("This field is required");
+                edtPassword.requestFocus();
+            }
+
+            if(edtName.length() == 0){
+                edtName.setError("This field is required");
+                edtName.requestFocus();
+            }
+
+
             String phone = edtPhoneNumber.getText().toString();
             String password = edtPassword.getText().toString();
             String name = edtName.getText().toString();
             String email = edtEmail.getText().toString();
+
 
             Signup(phone, password, name, email);
         }
@@ -212,7 +236,8 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        //ShowToast
+
+
                         Toast.makeText(Register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
                         System.out.println("Thanh cong");
 
@@ -222,6 +247,21 @@ public class Register extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        // check internet connection
+                        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                        NetworkInfo activeNetwork = null;
+                        if (cm != null) {
+                            activeNetwork = cm.getActiveNetworkInfo();
+                        }
+                        if(activeNetwork != null && activeNetwork.isConnectedOrConnecting()){
+                            Toast.makeText(Register.this, "Server is not connected to internet.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(Register.this, "Your device is not connected to internet.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        //ShowToast
                         //Show Toast
                         Toast.makeText(Register.this, "Signup Fail", Toast.LENGTH_SHORT).show();
                     }

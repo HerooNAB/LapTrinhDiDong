@@ -95,6 +95,7 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -124,7 +125,6 @@ public class ProfileFragment extends Fragment {
         loadUser();
         loadMyPosts();
 
-
         return view;
     }
 
@@ -147,6 +147,7 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         }
     };
+
 
     public static class Utility {
         public static int calculateNoOfColumns(Context context, float columnWidthDp) { // For example columnWidthdp=180

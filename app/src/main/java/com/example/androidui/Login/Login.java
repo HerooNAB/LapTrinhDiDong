@@ -3,6 +3,8 @@ package com.example.androidui.Login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -151,7 +153,21 @@ public class Login extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        // check internet connection
+                        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
+                        NetworkInfo activeNetwork = null;
+                        if (cm != null) {
+                            activeNetwork = cm.getActiveNetworkInfo();
+                        }
+                        if(activeNetwork != null && activeNetwork.isConnectedOrConnecting()){
+                            Toast.makeText(Login.this, "Server is not connected to internet.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(Login.this, "Your device is not connected to internet.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        //ShowToast
                         //Show Toast
                         Toast.makeText(Login.this, "Login Fail", Toast.LENGTH_SHORT).show();
                     }
@@ -163,9 +179,8 @@ public class Login extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("phone", "0392723066");
-                params.put("password", "anbinh123");
-
+                params.put("phone",phone);
+                params.put("password", password);
                 return params;
             }
         };
