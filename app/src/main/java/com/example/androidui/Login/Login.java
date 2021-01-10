@@ -111,7 +111,7 @@ public class Login extends AppCompatActivity {
         sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
 
         //API link
-        String ServerName = "https://whatfoods.herokuapp.com/signin";
+        String ServerName = "https://whatwhatfood.herokuapp.com/signin";
 
         //Setting Post Method
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ServerName,
@@ -158,17 +158,17 @@ public class Login extends AppCompatActivity {
                 })
 
                 //Truyền dữ liệu theo params
-                {
-                    @Override
-                    protected Map<String, String> getParams()
-                    {
-                        Map<String, String>  params = new HashMap<String, String>();
-                        params.put("phone", phone);
-                        params.put("password", password);
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("phone", "0392723066");
+                params.put("password", "anbinh123");
 
-                        return params;
-                    }
-                };
+                return params;
+            }
+        };
 
         //Tạo request
         RequestQueue requestQueue = Volley.newRequestQueue(this);

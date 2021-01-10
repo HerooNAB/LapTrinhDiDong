@@ -82,34 +82,34 @@
             </LinearLayout>
         </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <EditText
-                    android:id="@+id/txtContentPost"
-                    android:layout_width="410dp"
-                    android:layout_height="200dp"
-                    android:hint="Hôm nay ăn gì?"
-                    android:inputType="textMultiLine"
-                    android:minLines="5"
-                    android:ellipsize="end"
-                    android:textSize="14dp"
-                    android:textStyle="normal">
-                </EditText>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/edtContextPost"
+                android:layout_width="410dp"
+                android:layout_height="200dp"
+                android:hint="Hôm nay ăn gì?"
+                android:inputType="textMultiLine"
+                android:minLines="5"
+                android:ellipsize="end"
+                android:textSize="14dp"
+                android:textStyle="normal">
+            </EditText>
 
-                <ImageView
-                    android:id="@+id/imvPhotos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/txtContentPost"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    android:onClick="DisplayPhoto"> //Xử lý sự kiện phóng to ảnh
+            <ImageView
+                android:id="@+id/imvPhotos"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/edtContextPost"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:onClick="DisplayPhoto"> //Xử lý sự kiện phóng to ảnh
 
-                </ImageView>
-            </LinearLayout>
-       </RelativeLayout>
+            </ImageView>
+        </LinearLayout>
+    </RelativeLayout>
 
 
 
@@ -122,7 +122,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/imgBtnPhotos"
+                android:id="@+id/imgBtnUploadImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="370dp"
@@ -131,7 +131,7 @@
             </ImageButton>
 
             <ImageButton
-                android:id="@+id/imgBtnCamera"
+                android:id="@+id/imgBtnChooseImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="320dp"

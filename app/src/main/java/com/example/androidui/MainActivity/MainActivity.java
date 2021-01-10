@@ -1,5 +1,6 @@
 package com.example.androidui.MainActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,6 +12,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.Fragments.HomeFragment;
 import com.example.Fragments.ProfileFragment;
+import com.example.androidui.CreatePost.CreatePosts;
+import com.example.androidui.Login.Login;
 import com.example.androidui.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -55,9 +58,10 @@ public class MainActivity extends AppCompatActivity {
                             selectedfragment = new HomeFragment();
                             break;
                         case R.id.nav_search:
-
                             break;
                         case R.id.nav_add:
+                            startActivity(new Intent
+                                    (MainActivity.this, CreatePosts.class));
                             break;
                         case R.id.nav_heart:
                             break;
