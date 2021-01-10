@@ -53,19 +53,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         try {
             holder.textViewName.setText(postBy.getString("name"));
             Picasso.get().load(postBy.getString("avatar")).into(holder.profileImage);
+            holder.textViewCaption.setText(post.getCaption());
+            Picasso.get().load(post.getImage()).into(holder.postImage);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-        /*
-        holder.textViewIdPost.setText(post.getIdPost());
-        holder.textViewCaption.setText(post.getCaption());
-        holder.textViewImgUrl.setText(post.getImage());
-        Picasso.get().load(post.getImage()).into(holder.imagePost);*/
-        holder.textViewName.setText(post.getPostBy());
-        holder.textViewCaption.setText(post.getCaption());
-        Picasso.get().load(post.getImage()).into(holder.postImage);
+
     }
 
     @Override

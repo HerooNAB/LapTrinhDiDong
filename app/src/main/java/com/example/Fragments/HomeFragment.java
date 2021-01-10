@@ -99,13 +99,10 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_news);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        linkViews();
         loadListPost();
         return view;
     }
 
-    private void linkViews() {
-    }
 
     public void loadListPost() {
         SharedPreferences sharedpreferences;

@@ -200,11 +200,12 @@ public class ProfileFragment extends Fragment {
                             String avatar = user.getAvatar();
                             if(avatar == null)
                             {
-                                Picasso.get().load(user.getAvatar()).into(imgProfile);
+                                imgProfile.setImageResource(R.drawable.avatardefault);
                             }
                             else
                             {
-                                 imgProfile.setImageResource(R.drawable.avatardefault);
+                                Picasso.get().load(user.getAvatar()).into(imgProfile);
+
                             }
 
                         } catch (JSONException e) {
