@@ -73,12 +73,7 @@ public class CreatePosts extends AppCompatActivity {
         });
 
         tvUserPost = findViewById(R.id.tvUserPost);
-
-
     }
-
-
-
 
     //Service UploadImage
     private void UploadImage(){
@@ -162,6 +157,7 @@ public class CreatePosts extends AppCompatActivity {
                         System.out.println(response);
                         //Show Toast
                         Toast.makeText(CreatePosts.this, "CreatePost Successful", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 },
 

@@ -82,8 +82,7 @@
                     android:text="Edit Profile"
                     android:textAllCaps="false"
                     android:textStyle="bold"
-                    android:textSize="14dp"
-                    android:onClick="goToEditProfile">
+                    android:textSize="14dp">
                 </Button>
 
                 <View

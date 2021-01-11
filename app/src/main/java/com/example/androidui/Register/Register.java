@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -22,6 +23,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.androidui.CreatePost.CreatePosts;
+import com.example.androidui.Login.Login;
+import com.example.androidui.MainActivity.MainActivity;
 import com.example.androidui.R;
 
 import java.util.HashMap;
@@ -154,7 +158,7 @@ public class Register extends AppCompatActivity {
     // pattem name
     private boolean isValidName(String name) {
 
-        return Pattern.compile("^[a-zA-Z\\s]{2,50}")
+        return Pattern.compile("^[a-zA-Z\\s\\p{L}+]{2,50}")
                 .matcher(name).matches();
     }
 
@@ -237,7 +241,8 @@ public class Register extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
 
-
+                        startActivity(new Intent
+                                (Register.this, Login.class));
                         Toast.makeText(Register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
                         System.out.println("Thanh cong");
 

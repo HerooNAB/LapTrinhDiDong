@@ -42,6 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -108,6 +109,10 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //Khai báo SharePrefs
+        SharedPreferences sharedpreferences;
+        sharedpreferences = this.getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String AvatarUrl = sharedpreferences.getString("AvatarUrl","");
         // Inflate the layout for this fragment
         int mNoOfColumns = Utility.calculateNoOfColumns(getContext(),180);
 
@@ -120,7 +125,23 @@ public class ProfileFragment extends Fragment {
 
         //Nut Edit
         BtnEdit = view.findViewById(R.id.BtnEdit);
-        BtnEdit.setOnClickListener(submitEdit);
+        BtnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Chuyen du lieu sang trang edit profile
+                Intent intent = new Intent(getActivity(), EditProfile.class);
+                Bundle bundle = new Bundle();
+                if(bundle != null)
+                {
+                    bundle.putString("name", tvName.getText().toString());
+                    bundle.putString("bio", tvBio.getText().toString());
+                    bundle.putString("email", tvDisplayEmail.getText().toString());
+                    bundle.putString("avatar", AvatarUrl);
+                }
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
 
         //Profile
@@ -134,28 +155,6 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
-
-
-
-
-    private View.OnClickListener submitEdit = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            //Chuyen du lieu sang trang edit profile
-            Intent intent = new Intent(getActivity(), EditProfile.class);
-            Bundle bundle = new Bundle();
-            if(bundle != null)
-            {
-                bundle.putString("name", tvName.getText().toString());
-                bundle.putString("bio", tvBio.getText().toString());
-                bundle.putString("email", tvDisplayEmail.getText().toString());
-
-            }
-            intent.putExtras(bundle);
-            startActivity(intent);
-        }
-    };
-
 
     public static class Utility {
         public static int calculateNoOfColumns(Context context, float columnWidthDp) { // For example columnWidthdp=180
@@ -207,6 +206,9 @@ public class ProfileFragment extends Fragment {
 
                             String avatar = user.getAvatar();
                             System.out.println(avatar);
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putString("AvatarUrl", avatar);
+                            editor.commit();
                             if(avatar.equals("https://res.cloudinary.com/cnq/image/upload/v1586197723/noimage_d4ipmd.png") || avatar.equals(""))
                             {
                                 imgProfile.setImageResource(R.drawable.avatardefault);

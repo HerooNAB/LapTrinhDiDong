@@ -27,7 +27,7 @@
             app:itemIconTint="@color/white"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_navigation"
-            app:itemIconSize="60dp"
+            app:itemIconSize="30dp"
             android:background="@drawable/toolbar_bg"/>
 
     </com.google.android.material.appbar.AppBarLayout>

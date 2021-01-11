@@ -33,13 +33,17 @@ import com.example.androidui.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EditProfile extends AppCompatActivity {
+import static android.provider.CalendarContract.CalendarCache.URI;
+
+    public class EditProfile extends AppCompatActivity {
     ImageView  imvBackProfile;
     TextView tvtDone, tvtChangePhoto;
     CircleImageView imgProfile;
@@ -53,13 +57,7 @@ public class EditProfile extends AppCompatActivity {
         imvBackProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(getFragmentManager().getBackStackEntryCount() > 1)
-                {
-                    getFragmentManager().popBackStack();
-                }
-                else {
-                    System.out.println("Lỗi");
-                }
+                onBackPressed();
             }
         });
         tvtDone = findViewById(R.id.tvtDone);               // Submit chinh sua profile
@@ -96,12 +94,12 @@ public class EditProfile extends AppCompatActivity {
         bundle.getString("name");
         bundle.getString("bio");
         bundle.getString("email");
+        bundle.getString("avatar");
         etName.setText(getIntent().getStringExtra("name"));
         etBio.setText(getIntent().getStringExtra("bio"));
         etMail.setText(getIntent().getStringExtra("email"));
 
     }
-
 
     //Nhan vao anh profile
     public void Zooming(View view) {

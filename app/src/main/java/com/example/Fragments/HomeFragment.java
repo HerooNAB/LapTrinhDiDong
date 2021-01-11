@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -24,9 +24,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.Adapter.PostAdapter;
 import com.example.Models.Post;
 import com.example.androidui.R;
-import com.example.androidui.Test.TestActivity;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,9 +43,8 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<Post> posts;
+    private List<Post> posts = new ArrayList<>();
 
-    ProgressBar progressBar;
     
 
     // TODO: Rename parameter arguments, choose names that match
@@ -98,12 +94,16 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.recycler_view_news);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        progressBar = view.findViewById(R.id.progressBar);
+        LinearLayoutManager linearLayoutManager;
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
         loadListPost();
-
         return view;
     }
+
+
+
+
 
 
     public void loadListPost() {
@@ -113,7 +113,6 @@ public class HomeFragment extends Fragment {
 
         //API link
         String ServerName = "https://whatfoods.herokuapp.com/allpost";
-        posts = new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, ServerName, null, new Response.Listener<JSONObject>() {
             @Override
@@ -129,17 +128,39 @@ public class HomeFragment extends Fragment {
                                 Post.getString("caption"),
                                 Post.getString("postedBy")
                         );
-                        JSONObject postBy = new JSONObject(item.getPostBy());
-                        System.out.println(postBy.getString("name"));
 
-
-                        posts.add(item);
-
+                         posts.add(item);
                     }
-                    adapter = new PostAdapter(posts, getContext());
-                    recyclerView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
-                    progressBar.setVisibility(View.GONE);
+                    PostAdapter postAdapter = new PostAdapter(recyclerView,getContext());
+                    postAdapter.setListPost(posts);
+                    postAdapter.setOnLoadMoreListener(new PostAdapter.OnLoadMoreListener() {
+                        @Override
+                        public void onLoadMore() {
+                            if (posts.size() <= 50) { // max giá trị load
+                                posts.add(null); // Add 1 cái null , để làm gì ? Quay lại cái Adapter của chúng ta mà thấy , nếu gặp item null thì nó sẽ coi đó là Loading View
+                                postAdapter.notifyItemInserted(posts.size() - 1); // Báo với adapter là có sự thay đổi
+
+                                new Handler(Looper.myLooper()).postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        posts.remove(posts.size() - 1); //  // Remove thằng null khi nãy ra
+                                        postAdapter.notifyItemRemoved(posts.size()); // // Báo là có sự thay đổi
+                                        int index = posts.size();
+                                        int end = index + 10;
+
+                                        for (int i = index; i < end; i++) {
+
+                                        }
+                                        postAdapter.notifyDataSetChanged();
+                                        postAdapter.setLoaded();
+                                    }
+                                }, 2000); // delay trong 2s sẽ load tiếp dữ liệu
+                            }
+
+                        }
+                    });
+                    recyclerView.setAdapter(postAdapter);
+
 
 
                 } catch (JSONException e) {
@@ -163,4 +184,5 @@ public class HomeFragment extends Fragment {
         };
         queue.add(request);
     }
+
 }
