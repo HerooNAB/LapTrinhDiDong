@@ -15,6 +15,8 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -36,9 +38,10 @@ import java.util.Map;
 
 public class CreatePosts extends AppCompatActivity {
 
-    ImageButton imgBtnChooseImage, imgBtnUploadImage;
+    ImageButton imgBtnChooseImage;
     EditText edtContextPost;
-
+    TextView tvPosting, tvUserPost;
+    ImageView imvClosePost, imvPhotos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +56,29 @@ public class CreatePosts extends AppCompatActivity {
             }
         });
 
-        imgBtnUploadImage = findViewById(R.id.imgBtnUploadImage);
-        imgBtnUploadImage.setOnClickListener(new View.OnClickListener() {
+        tvPosting = findViewById(R.id.tvPosting);
+        tvPosting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UploadPost();
             }
         });
+
+        imvClosePost = findViewById(R.id.imvClosePost);
+        imvClosePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        tvUserPost = findViewById(R.id.tvUserPost);
+
+
     }
+
+
+
 
     //Service UploadImage
     private void UploadImage(){
@@ -147,7 +165,7 @@ public class CreatePosts extends AppCompatActivity {
                     }
                 },
 
-                //Login Fail
+                //Create post Fail
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -215,7 +233,7 @@ public class CreatePosts extends AppCompatActivity {
         //Khai báo SharePrefs
         SharedPreferences sharedpreferences;
         sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-
+        imvPhotos = findViewById(R.id.imvPhotos);
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
@@ -232,7 +250,7 @@ public class CreatePosts extends AppCompatActivity {
                             System.out.println("alo alo");
                             UploadImage();
                         }
-                        //imvPhoto.setImageBitmap(selectedImage);
+                        imvPhotos.setImageBitmap(selectedImage);
                     }
 
                     break;
@@ -260,7 +278,7 @@ public class CreatePosts extends AppCompatActivity {
                                     System.out.println("alo alo gallery");
                                     UploadImage();
                                 }
-
+                                imvPhotos.setImageURI(selectedImage);
                                 //imvPhoto.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                                 cursor.close();
                             }

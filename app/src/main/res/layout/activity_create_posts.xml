@@ -72,11 +72,11 @@
                     android:id="@+id/tvUserPost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kayn Nguyen"
                     android:padding="5dp"
                     android:textSize="16dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"/> //Ten nguoi dang bai post
+
             </LinearLayout>
         </LinearLayout>
 
@@ -95,47 +95,27 @@
                 android:textSize="14dp"
                 android:textStyle="normal">
             </EditText>
+            <ImageButton
+                android:id="@+id/imgBtnChooseImage"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/tvPosting"
+                android:layout_marginLeft="330dp"
+                android:src="@drawable/ic_baseline_camera_enhance_24">
 
+            </ImageButton>
             <ImageView
                 android:id="@+id/imvPhotos"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_below="@id/edtContextPost"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"> //Xử lý sự kiện phóng to ảnh
+                android:layout_marginTop="2dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true" > //Xử lý sự kiện phóng to ảnh
 
             </ImageView>
         </LinearLayout>
     </RelativeLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/imgBtnUploadImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="370dp"
-                android:src="@drawable/ic_baseline_photo_library_24"> //Xử lý sự kiện thêm ảnh từ thư viện
-            </ImageButton>
-
-            <ImageButton
-                android:id="@+id/imgBtnChooseImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="320dp"
-                android:src="@drawable/ic_baseline_camera_enhance_24"> //Xử lý sự kiện chụp ảnh
-
-            </ImageButton>
-        </RelativeLayout>
-
 
         <ImageView
             android:id="@+id/circle3"
@@ -166,5 +146,4 @@
             android:layout_marginBottom="-40dp"
             android:src="@drawable/circle"/>
 
-    </LinearLayout>
 </LinearLayout>

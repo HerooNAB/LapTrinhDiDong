@@ -3,15 +3,18 @@ package com.example.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,15 +24,19 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.daimajia.easing.Glider;
 import com.example.Adapter.MyPostAdapter;
 import com.example.Models.Post;
 import com.example.Models.User;
+import com.example.androidui.CreatePost.CreatePosts;
 import com.example.androidui.EditProfile.EditProfile;
 import com.example.androidui.R;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.PicassoProvider;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -142,6 +149,7 @@ public class ProfileFragment extends Fragment {
                 bundle.putString("name", tvName.getText().toString());
                 bundle.putString("bio", tvBio.getText().toString());
                 bundle.putString("email", tvDisplayEmail.getText().toString());
+
             }
             intent.putExtras(bundle);
             startActivity(intent);
@@ -194,20 +202,20 @@ public class ProfileFragment extends Fragment {
                             String email = user.getEmail();
 
                             tvName.setText(name);
-
                             tvBio.setText(bio);
                             tvDisplayEmail.setText(email);
 
                             String avatar = user.getAvatar();
-                            if(avatar == null)
+                            System.out.println(avatar);
+                            if(avatar.equals("https://res.cloudinary.com/cnq/image/upload/v1586197723/noimage_d4ipmd.png") || avatar.equals(""))
                             {
                                 imgProfile.setImageResource(R.drawable.avatardefault);
                             }
-                            else
-                            {
-                                Picasso.get().load(user.getAvatar()).into(imgProfile);
+                            else{
+                                Picasso.get().load(avatar).into(imgProfile);
 
                             }
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

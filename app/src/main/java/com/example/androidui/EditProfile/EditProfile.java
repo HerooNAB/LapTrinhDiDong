@@ -1,4 +1,4 @@
-package com.example.androidui.EditProfile;
+    package com.example.androidui.EditProfile;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -30,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidui.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
@@ -69,6 +70,7 @@ public class EditProfile extends AppCompatActivity {
                 String name = etName.getText().toString();
                 String bio = etBio.getText().toString();
                 String email = etMail.getText().toString();
+
                 editProfile(name, bio, email);
                 finish();
             }
@@ -94,7 +96,6 @@ public class EditProfile extends AppCompatActivity {
         bundle.getString("name");
         bundle.getString("bio");
         bundle.getString("email");
-
         etName.setText(getIntent().getStringExtra("name"));
         etBio.setText(getIntent().getStringExtra("bio"));
         etMail.setText(getIntent().getStringExtra("email"));
