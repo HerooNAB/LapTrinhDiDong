@@ -29,6 +29,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.Fragments.ProfileFragment;
+import com.example.androidui.CreatePost.CreatePosts;
+import com.example.androidui.MainActivity.MainActivity;
 import com.example.androidui.R;
 import com.squareup.picasso.Picasso;
 
@@ -115,7 +118,7 @@ import static android.provider.CalendarContract.CalendarCache.URI;
         String dataURI = sharedpreferences.getString("dataURI","");
 
         //API link
-        String ServerName = "https://whatwhatfood.herokuapp.com/uploadimagebase64";
+        String ServerName = "https://whatfoods.herokuapp.com/uploadimagebase64";
 
         //Setting Post Method
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ServerName,

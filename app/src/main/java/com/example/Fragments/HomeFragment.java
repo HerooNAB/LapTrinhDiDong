@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView.Adapter adapter;
     private List<Post> posts = new ArrayList<>();
 
-    
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -129,7 +129,7 @@ public class HomeFragment extends Fragment {
                                 Post.getString("postedBy")
                         );
 
-                         posts.add(item);
+                        posts.add(item);
                     }
                     PostAdapter postAdapter = new PostAdapter(recyclerView,getContext());
                     postAdapter.setListPost(posts);

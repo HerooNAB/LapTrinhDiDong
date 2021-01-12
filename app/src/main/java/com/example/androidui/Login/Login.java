@@ -1,5 +1,6 @@
 package com.example.androidui.Login;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +26,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.androidui.MainActivity.MainActivity;
 import com.example.androidui.R;
 import com.example.androidui.Register.Register;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -113,7 +117,7 @@ public class Login extends AppCompatActivity {
         sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
 
         //API link
-        String ServerName = "https://whatwhatfood.herokuapp.com/signin";
+        String ServerName = "https://whatfoods.herokuapp.com/signin";
 
         //Setting Post Method
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ServerName,
@@ -191,4 +195,5 @@ public class Login extends AppCompatActivity {
         //Thêm request vào Call API
         requestQueue.add(stringRequest);
     }
+
 }
